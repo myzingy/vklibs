@@ -1,0 +1,8 @@
+<!--miniprogram/pages/index/heatmap.wxml-->
+<cu-custom bgColor="bg-gradual-orange" isBack>
+    <view slot="content">热力图</view>
+</cu-custom>
+<view class="padding-xs bg-gradual-blue shadow shadow-lg">
+    <canvas style="width: {{width}}px; height: {{height}}px;" canvas-id="firstCanvas"></canvas>
+    <canvas style="width: 256px; height: 20px; position: fixed;bottom:20px; left:20px;" canvas-id="PaletteCanvas"></canvas>
+</view>
