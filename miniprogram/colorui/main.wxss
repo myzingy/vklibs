@@ -3722,7 +3722,6 @@ scroll-view.cu-steps .cu-item {
 .text-shadow[class*="-black"] {
 	text-shadow: var(--ShadowSize) var(--blackShadow);
 }
-
 .bg-img {
 	background-size: cover;
 	background-position: center;

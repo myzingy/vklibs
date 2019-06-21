@@ -52,5 +52,10 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  copy(){
+    wx.setClipboardData({
+      data:'https://github.com/myzingy/vklibs',
+    })
+  },
 })

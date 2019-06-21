@@ -1,13 +1,13 @@
 <cu-custom bgColor="bg-gradual-blue">
   <view slot="content">VK实验室</view>
 </cu-custom>
-<view class="margin-xl padding-xl bg-white radius shadow shadow-lg">
-  <formids url="./heatmap">
-    <view class="flex justify-center">
+<formids url="./heatmap">
+<view class="margin-xl padding-xl bg-gradual-orange radius shadow shadow-lg">
+    <view class="flex justify-center text-xxl">
       热力图
     </view>
-  </formids>
 </view>
-<view class="text-center margin-top">
-  <text class="text-grey text-xl">{{motto}}</text>
+</formids>
+<view class="text-center margin-top" bindtap="copy">
+  <text class="text-grey">https://github.com/myzingy/vklibs</text>
 </view>
