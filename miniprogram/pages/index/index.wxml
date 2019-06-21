@@ -2,11 +2,11 @@
   <view slot="content">VK实验室</view>
 </cu-custom>
 <view class="margin-xl padding-xl bg-white radius shadow shadow-lg">
-  <view class="flex justify-center">
-    <formids url="./heatmap">
+  <formids url="./heatmap">
+    <view class="flex justify-center">
       热力图
-    </formids>
-  </view>
+    </view>
+  </formids>
 </view>
 <view class="text-center margin-top">
   <text class="text-grey text-xl">{{motto}}</text>

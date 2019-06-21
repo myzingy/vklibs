@@ -1,4 +1,6 @@
 // miniprogram/pages/index/heatmap.js
+const app = getApp()
+const {regeneratorRuntime} = app
 Page({
 
   /**
@@ -8,15 +10,16 @@ Page({
     width:360,
     height:500,
   },
-
+  hasRun:true,//可以运行
+  hasRunning:false,//正在运行
   /**
    * 生命周期函数--监听页面加载
    */
-  HeatmapInterval:null,
   onLoad: function (options) {
-    this.HeatmapInterval=setInterval(()=>{
-      this.Heatmap();
-    },3000)
+    this.setData({
+      width:app.globalData.width,
+      height:app.globalData.height-app.globalData.CustomBar
+    })
   },
 
   /**
@@ -31,25 +34,20 @@ Page({
    */
   onShow: function () {
 
-
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    if(this.HeatmapInterval){
-      clearInterval(this.HeatmapInterval);
-    }
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    if(this.HeatmapInterval){
-      clearInterval(this.HeatmapInterval);
-    }
+
   },
 
   /**
@@ -73,6 +71,9 @@ Page({
 
   },
   Heatmap(){
+    this.hasRunning=false;
+    if(!this.hasRun) return;
+    this.hasRunning=true;
     this.PaletteCanvasInit();
     var context = wx.createCanvasContext('firstCanvas')
 
@@ -128,8 +129,8 @@ Page({
         y:0,
         width:this.data.width,
         height:this.data.height,
-        success:res=>{
-          console.log('wx.canvasGetImageData',res)
+        success:async (res)=>{
+
           let ImageData = res.data;
           for (var i = 3; i < ImageData.length; i+=4) {
             let alpha = ImageData[i];
@@ -139,20 +140,62 @@ Page({
             ImageData[i - 2] = color[1];
             ImageData[i - 1] = color[2];
           }
-          wx.canvasPutImageData({
-            canvasId:'firstCanvas',
-            x:0,
-            y:0,
-            width:this.data.width,
-            height:this.data.height,
-            data:ImageData,
-            success:res=> {
-              console.log('wx.canvasPutImageData', res)
+          //console.log('wx.canvasGetImageData',ImageData.length)
+          let maxWirteLength=750000;//程序最大写入数据
+          let maxWirteHeight=parseInt(maxWirteLength/4/this.data.width);//屏幕最大写入Height
+          let maxWirteStep=maxWirteHeight*4*this.data.width;//屏幕最大写入数据
+          let hasLast=false
+          for(let wi=0;wi<ImageData.length;wi+=maxWirteStep){
+            let y=parseInt((wi/4)/this.data.width);
+            let rightPos=wi+maxWirteStep;
+            if(rightPos>ImageData.length){
+              rightPos=ImageData.length;
+              hasLast=true;
             }
-          })
+
+            let height=parseInt(((rightPos-wi)/4)/this.data.width);
+            //console.log('ImageData.slice:',wi,rightPos)
+            let idata=ImageData.slice(wi,rightPos);
+            try{
+              await this.canvasPutImageData(y,height,idata)
+            }catch (e){}
+            if(hasLast){
+              setTimeout(()=>{
+                this.Heatmap();
+              },2000)
+            }
+          }
+
         }
       })
     },800)
+  },
+  canvasPutImageData(y,height,ImageData){
+    let width=this.data.width;
+    return new Promise(function(success,fail){
+      wx.canvasPutImageData({
+        canvasId:'firstCanvas',
+        x:0,
+        y:y,
+        width:width,
+        height:height,
+        data:ImageData,
+        success:res=> {
+          success()
+        },
+        fail:()=>{
+          fail()
+        },
+        complete:res=>{
+          console.log({
+            y:y,
+            height:height,
+            data:ImageData.length,
+            errMsg:res.errMsg
+          })
+        }
+      })
+    })
   },
   PaletteImageData:null,
   PaletteCanvasInit(){
@@ -162,7 +205,7 @@ Page({
       3: "#ffff00",
       10: "#ff0000",
     };
-    const width = 256, height = 20;
+    const width = 256, height = 5;
 
     let linearGradient = ctx.createLinearGradient(0, 0, width, 0);
     for (const key in defaultColorStops) {
@@ -181,7 +224,7 @@ Page({
         width:256,
         height:1,
         success:res=>{
-          console.log('wx.canvasGetImageData',res)
+          //console.log('wx.canvasGetImageData',res)
           this.PaletteImageData = res.data;
         }
       })
@@ -190,4 +233,10 @@ Page({
   colorPicker(position){
     return this.PaletteImageData.slice(position * 4, position * 4 + 3);
   },
+  StopRun(){
+    this.hasRun=!this.hasRun
+    if(this.hasRun && !this.hasRunning){
+      this.Heatmap();
+    }
+  }
 })
