@@ -76,7 +76,7 @@ Page({
     this.PaletteCanvasInit();
     var context = wx.createCanvasContext('firstCanvas')
 
-    var radius=50
+    var radius=20
     let min=0,max=100,count=20;
     // x, y 表示二维坐标； value表示强弱值
     var data = [
@@ -99,19 +99,22 @@ Page({
      */
     data.forEach(point => {
       let {x, y, value} = point;
+      let radiusFix=radius+value/2
       context.beginPath();
-      context.arc(x, y, radius, 0, 2 * Math.PI);
+      context.arc(x, y, radiusFix, 0, 2 * Math.PI);
       context.closePath();
 
       // 创建渐变色: r,g,b取值比较自由，我们只关注alpha的数值
-      let radialGradient = context.createCircularGradient(x, y,radius);
-      radialGradient.addColorStop(0.0, "rgba(0,0,0,1)");
+      let radialGradient = context.createCircularGradient(x, y,radiusFix);
+      let alpha = (value - min) / (max - min);
+      alpha = Math.max(Math.min(alpha, 1), 0)
+      radialGradient.addColorStop(0.0, "rgba(0,0,0,"+alpha+")");
       radialGradient.addColorStop(1.0, "rgba(0,0,0,0)");
       //context.fillStyle = radialGradient;
       context.setFillStyle(radialGradient)
       // 设置globalAlpha: 需注意取值需规范在0-1之间
-      let globalAlpha = (value - min) / (max - min);
-      context.setGlobalAlpha(Math.max(Math.min(globalAlpha, 1), 0));
+      //let globalAlpha = (value - min) / (max - min);
+      //context.setGlobalAlpha(Math.max(Math.min(globalAlpha, 1), 0));
 
       // 填充颜色
       context.fill();
@@ -156,8 +159,7 @@ Page({
     var ctx = wx.createCanvasContext('PaletteCanvas')
     const defaultColorStops = {
       0: "#00ffff",
-      2: "#00ff00",
-      5: "#ffff00",
+      3: "#ffff00",
       10: "#ff0000",
     };
     const width = 256, height = 20;
