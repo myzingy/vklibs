@@ -8,6 +8,7 @@
     </view>
 </view>
 </formids>
+<vktool></vktool>
 <view class="text-center margin-top" bindtap="copy">
   <text class="text-grey">https://github.com/myzingy/vklibs</text>
 </view>

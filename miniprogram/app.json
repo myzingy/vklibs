@@ -13,5 +13,11 @@
   "usingComponents": {
     "cu-custom": "/colorui/components/cu-custom"
   },
+  "plugins": {
+    "vktool": {
+      "version": "1.0.4",
+      "provider": "wxd3dc4206c76f14fc"
+    }
+  },
   "sitemapLocation": "sitemap.json"
 }
