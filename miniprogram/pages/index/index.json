@@ -1,6 +1,5 @@
 {
   "usingComponents": {
-    "formids": "/miniprogram_npm/vktool/formids",
-    "vktool":"plugin://vktool/list"
+    "formids": "/miniprogram_npm/vktool/formids"
   }
 }

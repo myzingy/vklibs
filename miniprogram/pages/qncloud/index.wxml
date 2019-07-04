@@ -1,0 +1,21 @@
+<!--miniprogram/pages/qncloud/index.wxml-->
+<cu-custom bgColor="bg-gradual-blue"  isBack>
+    <view slot="content">VK实验室</view>
+</cu-custom>
+<formids url="./upload">
+    <view class="padding-xs bg-gradual-orange shadow shadow-lg">
+        <view class="flex justify-center text-xxl">
+            上传图片
+        </view>
+    </view>
+</formids>
+<view class="padding-xs">
+    <brickLayout
+            dataSet="{{dataSet}}"
+            option="{{brick_option}}"
+            bind:tapCard="tapCard"
+            bind:tapLike="tapLike"
+            bind:tapUser="tapUser"
+            bind:onCardExpanded="onCardExpanded"
+    />
+</view>

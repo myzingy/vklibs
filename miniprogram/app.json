@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/index/heatmap"
+    "pages/index/heatmap",
+    "pages/qncloud/index",
+    "pages/qncloud/upload"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -17,6 +19,10 @@
     "vktool": {
       "version": "2.0.0",
       "provider": "wxd3dc4206c76f14fc"
+    },
+    "brickLayout": {
+      "version": "0.2.0",
+      "provider": "wx3c042630f3cdc175"
     }
   },
   "sitemapLocation": "sitemap.json"

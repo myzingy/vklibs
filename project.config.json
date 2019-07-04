@@ -41,7 +41,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -54,6 +54,19 @@
 					"name": "pages/index/heatmap",
 					"pathName": "pages/index/heatmap",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/qncloud/index",
+					"pathName": "pages/qncloud/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/qncloud/upload",
+					"pathName": "pages/qncloud/upload",
 					"scene": null
 				}
 			]

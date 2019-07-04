@@ -1,0 +1,40 @@
+/* miniprogram/pages/qncloud/upload.wxss */
+.qnupload{
+    display: inline-block;
+    width: calc(33% - 40rpx);
+    height: 450rpx;
+    padding: 20rpx;
+}
+.qnupload2{
+    display: inline-block;
+    width: calc(50% - 40rpx);
+    height: 200rpx;
+    padding: 20rpx;
+}
+.upload{
+    background-color: antiquewhite;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+.upload.add:before{
+    content: '';
+    left:calc(50% - 50rpx);
+    top:calc(50% - 10rpx);
+    width: 100rpx;
+    height: 20rpx;
+    background-color: #FAC7B6;
+    position: absolute;
+}
+.upload.add:after{
+    content: '';
+    left:calc(50% - 10rpx);
+    top:calc(50% - 50rpx);
+    width: 20rpx;
+    height: 100rpx;
+    background-color: #FAC7B6;
+    position: absolute;
+}
