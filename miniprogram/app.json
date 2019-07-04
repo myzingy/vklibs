@@ -15,7 +15,7 @@
   },
   "plugins": {
     "vktool": {
-      "version": "1.0.4",
+      "version": "2.0.0",
       "provider": "wxd3dc4206c76f14fc"
     }
   },
