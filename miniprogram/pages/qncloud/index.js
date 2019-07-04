@@ -1,4 +1,6 @@
 // miniprogram/pages/qncloud/index.js
+const app = getApp()
+const {PubSub} = app
 Page({
 
   /**
@@ -39,7 +41,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    PubSub.on('reflush',res=>{
+      this.getData()
+    })
   },
 
   /**
@@ -89,5 +93,8 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+  getData(){
+
+  },
 })

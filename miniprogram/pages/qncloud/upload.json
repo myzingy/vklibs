@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "formids": "/miniprogram_npm/vktool/formids",
     "qnupload":"plugin://vktool/qnupload"
   }
 }

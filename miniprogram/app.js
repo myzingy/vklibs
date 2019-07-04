@@ -10,6 +10,7 @@ App({
     userInfo: null
   },
   onLaunch: function() {
+    wx.cloud.init()
     this.config({
       request:{
         responseKey:'Response', //Response 则使用网络请求状态判断，其它值则使用res.StatusKey 进行判断

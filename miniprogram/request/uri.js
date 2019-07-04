@@ -17,4 +17,12 @@ export default {
   //全部使用默认参数
   'AppReserveSmsBuy':null,
 
+  //publish
+  'publish':{
+    alias:'wx.cloud.callFunction', //必须
+    apiName:'publish',      //必须
+    loading:true,       //loading效果 ，
+    cachetime:0,        //缓存 0无
+  }
+
 }

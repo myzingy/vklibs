@@ -1,4 +1,7 @@
 // miniprogram/pages/qncloud/upload.js
+const app = getApp()
+const {PubSub} = app
+console.log(app)
 Page({
 
   /**
@@ -6,15 +9,15 @@ Page({
    */
   data: {
     qnConf:{
-      accessKey:'七牛的accessKey',
-      secretKey:'七牛的secretKey',
-      bucket:'fotoo',//存储空间
-      fileType:'image',//image|video|audio|file def:file
-      region:'华东',//存储区域
-      domain:'http://xxx.xxxx.com',//你绑定的域名,非必填项
+      accessKey:'p7WjLuVs1GTpFRH_7mnZ0KidZfWXNh5_nW_2X_eJ',
+      secretKey:'mWb6EV70xL2opJU1uwWk9Z7MyAUjPF8cLVwvd9x6',
+      bucket:'fotoo',
+      fileType:'image',
+      region:'华东',
+      domain:'http://qn001.pfotoo.com'
     },
     upConf:{
-      prefixPath:'prefixPath',//上传到七牛后有一个路径前缀，可为空；（还会自动强制带一个日期前缀）
+      prefixPath:'oxcc',//上传到七牛后有一个路径前缀，可为空；
       count:3,//文件数量
       loading:'leaf',// none|leaf|circle|ring, def leaf 上传的loading效果，none为无，可自行在page wxml中添加
       group:'def', //一个页面上多个组件的区分标识
@@ -24,9 +27,9 @@ Page({
     hasAddFile:true,//出现上传加号
 
     upConf2:{
-      prefixPath:'prefixPath',//上传到七牛后有一个路径前缀，可为空；（还会自动强制带一个日期前缀）
+      prefixPath:'oxcc',//上传到七牛后有一个路径前缀，可为空；
       count:4,//文件数量
-      loading:'leaf',// none|leaf|circle|ring, def leaf 上传的loading效果，none为无，可自行在page wxml中添加
+      loading:'ring',// none|leaf|circle|ring, def leaf 上传的loading效果，none为无，可自行在page wxml中添加
       group:'def', //一个页面上多个组件的区分标识
 
     },
@@ -101,6 +104,28 @@ Page({
     this.setData({
       files2:e.detail.data,
       hasAddFile2:e.detail.data.length<this.data.upConf2.count
+    })
+  },
+  publish(e){
+    let data=this.data.files.concat(this.data.files2);
+    let hasSubmit=true
+    data.forEach(f=>{
+      if(f.progress!=100){
+        hasSubmit=false;
+        return false;
+      }
+    })
+    if(!hasSubmit){
+      return util.toast('请等待，有图片正在上传')
+    }
+    app.publish({
+      act:'images',
+      data:data,
+    }).then(res=>{
+      PubSub.emit('reflush',{
+        act:'reflush'
+      })
+      wx.navigateBack();
     })
   },
 })

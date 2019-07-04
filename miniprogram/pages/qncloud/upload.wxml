@@ -18,7 +18,7 @@
     </qnupload>
 </view>
 <view>
-    <block wx:for="{{files}}" wx:key="files.key">
+    <block wx:for="{{files2}}" wx:key="files.key">
         <qnupload qnConf="{{qnConf}}" upConf="{{upConf2}}"
                   file="{{item}}" files="{{files}}"
                   bindevent="qnevent" class="qnupload2">
@@ -27,12 +27,12 @@
     </block>
     <qnupload wx:if="{{hasAddFile2}}"
               qnConf="{{qnConf}}" upConf="{{upConf2}}"
-              file="{{item}}" files="{{files}}"
+              file="{{item}}" files="{{files2}}"
               bindevent="qnevent2" class="qnupload2">
         <view class="upload add"></view>
     </qnupload>
 </view>
-<formids bindclick="upload">
+<formids bindclick="publish">
     <view class="margin-sm padding-xs bg-gradual-orange radius shadow shadow-lg">
         <view class="flex justify-center text-xxl">
             发布照片
