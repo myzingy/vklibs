@@ -17,7 +17,8 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"enhance": true
 	},
 	"appid": "wx57e1b2146070ea91",
 	"projectname": "vklibs",

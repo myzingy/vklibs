@@ -5,19 +5,19 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  console.log("\n\rparams",event)
+  console.log("\n\rparams",event,"\n\r")
   return await saveQnImages(event)
 }
 async function saveQnImages(params){
-  const db = cloud.database()
-  const qnfiles = db.collection('qnfiles')
-  params.data.forEach(async f=>{
-    await qnfiles.add({
-      // data 字段表示需新增的 JSON 数据
-      data: {
-        ...f.remote
-      }
-    })
+  const db = cloud.database({
+    env: 'prod-8888'
   })
-  return params.data;
+  let files=JSON.parse(params.data)
+  for(let i=0;i<files.length;i++){
+    await db.collection('qnfiles').add({
+      data: files[i]
+    })
+    console.log("\n\rfile",files[i],"\n\r")
+  }
+  return files;
 }

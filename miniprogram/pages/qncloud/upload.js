@@ -109,18 +109,25 @@ Page({
   publish(e){
     let data=this.data.files.concat(this.data.files2);
     let hasSubmit=true
+    let files=[]
     data.forEach(f=>{
       if(f.progress!=100){
         hasSubmit=false;
         return false;
       }
+      if(f.remote && f.remote.exif){
+        files.push(f.remote)
+      }
     })
     if(!hasSubmit){
-      return util.toast('请等待，有图片正在上传')
+      return app.toast('请等待，有图片正在上传')
+    }
+    if(files.length<1){
+      return app.toast('只能上传拍摄图片')
     }
     app.publish({
       act:'images',
-      data:data,
+      data:JSON.stringify(files),
     }).then(res=>{
       PubSub.emit('reflush',{
         act:'reflush'
