@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vktool": "^1.2.4"
+    "vktool": "^1.2.5"
   }
 }
