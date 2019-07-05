@@ -42,8 +42,9 @@ Page({
    */
   onLoad: function (options) {
     PubSub.on('reflush',res=>{
-      this.getData()
+      this.getData(true)
     })
+    this.getData()
   },
 
   /**
@@ -94,7 +95,22 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getData(){
-
+  getData(fouce=false){
+    app.getPublishImages({
+      act:'get'
+    },fouce).then(res=>{
+      console.log(res)
+      let data=[];
+      res.data.forEach(f=>{
+        data.push({
+          id: f._id,
+          backgroundColor: (f.imageAve.RGB||"").replace("0x","#"),
+          images: [f.url+'.lim.jpg']
+        })
+      })
+      this.setData({
+        dataSet:data
+      })
+    })
   },
 })
