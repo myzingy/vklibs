@@ -21,7 +21,7 @@
     <block wx:for="{{files2}}" wx:key="files.key">
         <qnupload qnConf="{{qnConf}}" upConf="{{upConf2}}"
                   file="{{item}}" files="{{files}}"
-                  bindevent="qnevent" class="qnupload2">
+                  bindevent="qnevent2" class="qnupload2">
             <view class="upload {{item?'':'add'}}" style="background-image: url('{{item.path}}')"></view>
         </qnupload>
     </block>
