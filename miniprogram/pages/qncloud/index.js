@@ -7,22 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    dataSet:[
-      {
-        id: '1',
-        backgroundColor: '#fefefe',
-        images: [
-          'https://qn001.pfotoo.com/prefixPath/md435139.jpg.lim.jpg'
-        ]
-      },
-      {
-        id: '2',
-        backgroundColor: '#AF7AC5',
-        images: [
-          'https://qn001.pfotoo.com/prefixPath/md464209.jpg.lim.jpg'
-        ]
-      }
-    ],
+    dataSet:[],
     brick_option:{
       defaultExpandStatus: true,
       backgroundColor:  '#ababab',
@@ -30,10 +15,10 @@ Page({
       columns: 2,
       imageFillMode: 'widthFix',
       icon:{
-        fill:'xxx.com/icon-full.svg',
-        default:'xxx.com/icon-default.svg'
+        fill:'http://qn001.pfotoo.com/images/see-ffff.svg',
+        default:'http://qn001.pfotoo.com/images/see-ffff.svg'
       },
-      fontColor:'#000'
+      fontColor:'#fefefe'
     },
   },
 
@@ -105,12 +90,21 @@ Page({
         data.push({
           id: f._id,
           backgroundColor: f.imageAve?f.imageAve.RGB.replace("0x","#"):"",
-          images: [f.url+'.lim.jpg']
+          images: [f.url+'.lim.jpg'],
+          time:parseInt(f.addtime||0),
+          likedCount: parseInt(f.addtime||0),
+          user: {
+            avatar:'H',
+            username: f.exif.Make.val+' '+f.exif.Model.val,
+          },
         })
       })
       this.setData({
         dataSet:data
       })
     })
+  },
+  tapCard(e){
+    console.log('tapCard(e)',e)
   },
 })
