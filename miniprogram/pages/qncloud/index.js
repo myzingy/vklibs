@@ -104,7 +104,7 @@ Page({
       res.data.forEach(f=>{
         data.push({
           id: f._id,
-          backgroundColor: (f.imageAve.RGB||"").replace("0x","#"),
+          backgroundColor: f.imageAve?f.imageAve.RGB.replace("0x","#"):"",
           images: [f.url+'.lim.jpg']
         })
       })
