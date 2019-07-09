@@ -19,6 +19,7 @@
             bind:onCardExpanded="tapCard"
     />
 </view>
+<view class="tip">请点击非图片区域</view>
 <previewImage urls="{{urls}}" current="{{current}}"
               hasHidden="{{hasHidden}}" bindevent="previewEvent">
     <view class="image-info-view">

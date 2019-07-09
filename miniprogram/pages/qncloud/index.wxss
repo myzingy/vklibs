@@ -27,3 +27,15 @@
     word-break:break-all;
     background-color: rgba(0,100,200,0.7);
 }
+.tip{
+    position: fixed;
+    bottom: 150rpx;
+    left:150rpx;
+    right:150rpx;
+    background-color: rgba(250,99,99,0.7);
+    border-radius: 20rpx;
+    font-size: 24rpx;
+    padding: 10rpx 0;
+    text-align: center;
+    color: #fefefe;
+}
