@@ -127,7 +127,7 @@ Page({
   },
   tapCard(e){
     console.log('tapCard(e)',e)
-    this.list.forEach(f=>{
+    this.list.some(f=>{
       console.log(f._id,e.detail.card_id)
       if(f._id==e.detail.card_id){
         this.setData({
