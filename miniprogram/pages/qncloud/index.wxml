@@ -14,8 +14,28 @@
             dataSet="{{dataSet}}"
             option="{{brick_option}}"
             bind:tapCard="tapCard"
-            bind:tapLike="tapLike"
-            bind:tapUser="tapUser"
-            bind:onCardExpanded="onCardExpanded"
+            bind:tapLike="tapCard"
+            bind:tapUser="tapCard"
+            bind:onCardExpanded="tapCard"
     />
 </view>
+<previewImage urls="{{urls}}" current="{{current}}"
+              hasHidden="{{hasHidden}}" bindevent="previewEvent">
+    <view class="image-info-view">
+        <view class="image-info">
+            <block wx:for="{{urls}}" wx:key="urls.key">
+                <view wx:if="{{currentIndex==index}}">
+                    <view>链接:{{item}}</view>
+                    <view>拍摄时间: {{file.exif.DateTime.val}}</view>
+                    <view>光圈:{{file.exif.ApertureValue.val}}</view>
+                    <view>快门:{{file.exif.ExposureTime.val}}</view>
+                    <view>ISO:{{file.exif.ISOSpeedRatings.val}}</view>
+                    <view>位置:{{file.exif.GPSLatitude.valStr}} {{file.exif.GPSLongitude.valStr}}</view>
+                    <view>尺寸:{{file.exif.PixelXDimension.val}} x {{file.exif.PixelYDimension.val}}</view>
+                    <view>设备:{{file.exif.Make.val}} {{file.exif.Model.val}}</view>
+                </view>
+            </block>
+        </view>
+        <view class="image-info-close" bindtap="previewHide">X</view>
+    </view>
+</previewImage>

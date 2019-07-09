@@ -17,7 +17,7 @@
   },
   "plugins": {
     "vktool": {
-      "version": "2.0.5",
+      "version": "2.0.6",
       "provider": "wxd3dc4206c76f14fc"
     },
     "brickLayout": {

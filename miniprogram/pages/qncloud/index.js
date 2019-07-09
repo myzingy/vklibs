@@ -20,6 +20,11 @@ Page({
       },
       fontColor:'#fefefe'
     },
+    urls:[],
+    current:'',
+    hasHidden:true,
+    currentIndex:0,
+    file:null,
   },
 
   /**
@@ -80,21 +85,37 @@ Page({
   onShareAppMessage: function () {
 
   },
+  list:null,
+  dfm(str,format='dfm'){
+    let arr= str.split(',');
+    if(format=='dfm'){
+      return arr[0]++
+    }
+  },
   getData(fouce=false){
     app.getPublishImages({
       act:'get'
     },fouce).then(res=>{
       console.log(res)
       let data=[];
-      res.data.forEach(f=>{
+      this.list=res.data;
+      this.list.forEach(f=>{
+        if(f.exif){
+          let lat=f.exif.GPSLatitude.val.split(',')
+          let lng=f.exif.GPSLongitude.val.split(',')
+          f.exif.GPSLatitude.valStr=f.exif.GPSLatitudeRef.val+lat[0]+'°'+lat[1]+'′'+lat[2]+'″';
+          f.exif.GPSLongitude.valStr=f.exif.GPSLongitudeRef.val+lng[0]+'°'+lng[1]+'′'+lng[2]+'″';
+          f.exif.GPSLongitude.value='';
+          f.exif.GPSLongitude.value='';
+        }
         data.push({
           id: f._id,
           backgroundColor: f.imageAve?f.imageAve.RGB.replace("0x","#"):"",
-          images: [f.url+'.lim.jpg'],
+          images: [f.url+'.lim.jpg?imageView2/3/w/980'],
           time:parseInt(f.addtime||0),
           likedCount: parseInt(f.addtime||0),
           user: {
-            avatar:'H',
+            avatar:'',
             username: f.exif.Make.val+' '+f.exif.Model.val,
           },
         })
@@ -106,5 +127,29 @@ Page({
   },
   tapCard(e){
     console.log('tapCard(e)',e)
+    this.list.forEach(f=>{
+      console.log(f._id,e.detail.card_id)
+      if(f._id==e.detail.card_id){
+        this.setData({
+          urls:[f.url],
+          current:f.url,
+          file:f,
+          hasHidden:false,
+        });
+        return true;
+      }
+    })
+  },
+  previewEvent(e){
+    console.log('previewEvent(e)',e)
+    this.setData({
+      currentIndex:e.detail.data.current
+    })
+  },
+  previewHide(){
+    this.setData({
+      currentIndex:0,
+      hasHidden:true,
+    })
   },
 })
