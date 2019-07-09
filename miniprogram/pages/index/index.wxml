@@ -11,7 +11,7 @@
 <formids url="../qncloud/index">
     <view class="margin-xs margin-top-lg padding-xs bg-gradual-green radius shadow shadow-lg">
         <view class="flex justify-center text-xxl">
-            瀑布流+七牛直传
+            七牛直传/预览图
         </view>
     </view>
 </formids>
