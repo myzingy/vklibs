@@ -35,6 +35,7 @@ Page({
       this.getData(true)
     })
     this.getData()
+    this.sys=wx.getSystemInfoSync();
   },
 
   /**
@@ -97,7 +98,11 @@ Page({
       act:'get'
     },fouce).then(res=>{
       console.log(res)
-      let data=[];
+      let data=[
+        {list:[],height:0},
+        {list:[],height:0},
+        {list:[],height:0},
+      ];
       this.list=res.data;
       this.list.forEach(f=>{
         if(f.exif){
@@ -108,6 +113,20 @@ Page({
           f.exif.GPSLongitude.value='';
           f.exif.GPSLongitude.value='';
         }
+        if(f.imageAve){
+          f.imageAve=f.imageAve.RGB.replace("0x","#")
+        }
+        //imageInfo
+        let minHeight=Math.min(data[0].height,data[1].height,data[2].height);
+        f.height=f.imageInfo.height*((this.sys.windowWidth*0.33-13)/f.imageInfo.width)
+        data.some((col,ci)=>{
+          if(col.height==minHeight){
+            col.list.push(f);
+            col.height+=parseInt(f.height)
+            return true
+          }
+        })
+        /*
         data.push({
           id: f._id,
           backgroundColor: f.imageAve?f.imageAve.RGB.replace("0x","#"):"",
@@ -119,6 +138,7 @@ Page({
             username: f.exif.Make.val+' '+f.exif.Model.val,
           },
         })
+        */
       })
       this.setData({
         dataSet:data
@@ -128,8 +148,8 @@ Page({
   tapCard(e){
     console.log('tapCard(e)',e)
     this.list.some(f=>{
-      console.log(f._id,e.detail.card_id)
-      if(f._id==e.detail.card_id){
+      console.log(f._id,e.target.id)
+      if(f._id==e.target.id){
         this.setData({
           urls:[f.url],
           current:f.url,

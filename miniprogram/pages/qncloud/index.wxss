@@ -39,3 +39,30 @@
     text-align: center;
     color: #fefefe;
 }
+
+.waterfall{
+    column-count: 3;
+    column-gap: 10rpx;
+}
+
+.item{
+    box-sizing: border-box;
+    break-inside: avoid;
+}
+.item-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    font-size: 20rpx;
+    color: #fefefe;
+    box-sizing: border-box;
+    padding: 10rpx;
+    margin-bottom: 10rpx;
+    border-radius: 10rpx;
+}
+.item-content .device{
+    font-size: 20rpx;
+    padding-top: 10rpx;
+}

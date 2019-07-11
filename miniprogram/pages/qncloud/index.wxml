@@ -10,16 +10,45 @@
     </view>
 </formids>
 <view class="padding-xs">
-    <brickLayout
-            dataSet="{{dataSet}}"
-            option="{{brick_option}}"
-            bind:tapCard="tapCard"
-            bind:tapLike="tapCard"
-            bind:tapUser="tapCard"
-            bind:onCardExpanded="tapCard"
-    />
+    <view class="waterfall">
+        <view class="item">
+            <view class="item-content" style="background-color: {{item.imageAve}}"
+                  bindtap="tapCard" id="{{item._id}}"
+                  wx:for="{{dataSet[0].list}}" wx:key="dataSet[0].list.key">
+                <image lazy-load id="{{item._id}}"
+                       style="height:{{item.height}}px;"
+                       src="{{item.url}}.lim.jpg?imageView2/3/w/980"></image>
+                <view class="info">
+                    <view class="device">{{item.exif.Make.val}} {{item.exif.Model.val}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="item">
+            <view class="item-content" style="background-color: {{item.imageAve}}"
+                  bindtap="tapCard" id="{{item._id}}"
+                  wx:for="{{dataSet[1].list}}" wx:key="dataSet[1].list.key">
+                <image lazy-load id="{{item._id}}"
+                       style="height:{{item.height}}px;"
+                       src="{{item.url}}.lim.jpg?imageView2/3/w/980"></image>
+                <view class="info">
+                    <view class="device">{{item.exif.Make.val}} {{item.exif.Model.val}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="item">
+            <view class="item-content" style="background-color: {{item.imageAve}}"
+                  bindtap="tapCard" id="{{item._id}}"
+                  wx:for="{{dataSet[2].list}}" wx:key="dataSet[2].list.key">
+                <image lazy-load id="{{item._id}}"
+                       style="height:{{item.height}}px;"
+                       src="{{item.url}}.lim.jpg?imageView2/3/w/980"></image>
+                <view class="info">
+                    <view class="device">{{item.exif.Make.val}} {{item.exif.Model.val}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>
-<view class="tip">请点击非图片区域</view>
 <previewImage urls="{{urls}}" current="{{current}}"
               hasHidden="{{hasHidden}}" bindevent="previewEvent">
     <view class="image-info-view">
