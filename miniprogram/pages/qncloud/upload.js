@@ -35,13 +35,18 @@ Page({
     },
     files2:[], //组件数据放入这里展示到页面上
     hasAddFile2:true,//出现上传加号
+
+    hasIphone:false,//
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    let sys=wx.getSystemInfoSync();
+    this.setData({
+      hasIphone:sys.system.toLowerCase().indexOf('ios')>-1,
+    })
   },
 
   /**
