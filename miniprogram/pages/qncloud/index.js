@@ -105,7 +105,7 @@ Page({
       ];
       this.list=res.data;
       this.list.forEach(f=>{
-        if(f.exif){
+        if(f.exif && f.exif.GPSLatitudeRef && f.exif.GPSLongitude){
           let lat=f.exif.GPSLatitude.val.split(',')
           let lng=f.exif.GPSLongitude.val.split(',')
           f.exif.GPSLatitude.valStr=f.exif.GPSLatitudeRef.val+lat[0]+'°'+lat[1]+'′'+lat[2]+'″';
@@ -156,6 +156,11 @@ Page({
           file:f,
           hasHidden:false,
         });
+        app.detectFace({
+          Url:f.url
+        }).then(res=>{
+          console.log('app.detectFace',res);
+        })
         return true;
       }
     })

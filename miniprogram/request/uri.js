@@ -24,6 +24,14 @@ export default {
     loading:true,       //loading效果 ，
     cachetime:0,        //缓存 0无
   },
+
+  //tcbService-ai-detectFace
+  'detectFace':{
+    alias:'wx.cloud.callFunction', //必须
+    apiName:'tcbService-ai-detectFace',      //必须
+    loading:true,       //loading效果 ，
+    cachetime:0,        //缓存 0无
+  },
   //publish
   'getPublishImages':{
     alias:'wx.cloud.callFunction', //必须
