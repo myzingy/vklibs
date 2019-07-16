@@ -1,5 +1,5 @@
 <!--miniprogram/pages/iai/face-detect.wxml-->
-<cu-custom bgColor="bg-gradual-blue">
+<cu-custom bgColor="bg-gradual-blue" isBack>
     <view slot="content">腾讯人脸分析</view>
 </cu-custom>
 <view class="container padding-xs">
