@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/index/heatmap",
     "pages/qncloud/index",
-    "pages/qncloud/upload"
+    "pages/qncloud/upload",
+    "pages/iai/face-detect"
   ],
   "window": {
     "backgroundTextStyle": "light",

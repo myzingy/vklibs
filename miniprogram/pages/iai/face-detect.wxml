@@ -1,0 +1,11 @@
+<!--miniprogram/pages/iai/face-detect.wxml-->
+<cu-custom bgColor="bg-gradual-blue">
+    <view slot="content">腾讯人脸分析</view>
+</cu-custom>
+<view class="container padding-xs">
+    <iai
+            recognizeText="进行分析"
+            mode="DetectFace"
+            bindfinish="handleFinish"
+    />
+</view>

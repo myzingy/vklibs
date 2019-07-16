@@ -1,0 +1,4 @@
+/* miniprogram/pages/iai/face-detect.wxss */
+.form-container {
+    margin-top: 40rpx;
+}

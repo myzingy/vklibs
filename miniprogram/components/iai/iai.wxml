@@ -1,0 +1,54 @@
+<!--components/iai/iai.wxml-->
+<iai>
+    <view class="image-container">
+        <image
+                class="image"
+                src="{{fileID || imgUrl}}"
+                mode="widthFix"
+        ></image>
+        <block wx:if="faceRects && faceRects.length">
+            <view
+                    wx:for="{{faceRects}}"
+                    wx:key="*this"
+                    class="face-result-item"
+                    style="left:{{item.rectX}};top:{{item.rectY}};height:{{item.rectHeight}};width:{{item.rectWidth}};">
+                <view class="face-result-text">
+                    <text>颜值 {{ item.FaceQualityInfo.Score }} 分</text>
+                    <text>年龄 {{ item.FaceAttributesInfo.Age }} 岁</text>
+                </view>
+            </view>
+        </block>
+    </view>
+    <view class="result" wx:if="{{faceRects && faceRects.length}}">
+        <view class="cu-bar bg-white solid-bottom margin-top">
+            <view class="action">
+                <text class="cuIcon-title text-orange "></text> 分析结果
+            </view>
+        </view>
+        <view class="cu-list menu text-left solid-top">
+            <block wx:for="{{faceRects}}" wx:key="*this" wx:for-item="face">
+                <block wx:for="{{ ['FaceAttributesInfo', 'FaceQualityInfo'] }}" wx:key="*this" wx:for-item="attr">
+                    <view class="cu-item {{menuArrow?'arrow':''}}"
+                          wx:for="{{face[attr]}}" wx:key="*this" wx:for-index="key" wx:if="{{resMap[key]}}">
+                        <view class="content">
+                            <text class="cuIcon-tagfill text-red"></text>
+                            <text class="text-grey">{{ resMap[key].label }}</text>
+                        </view>
+                        <view class="action">
+                            <view class="cu-tag round bg-orange light" wx:if="{{ item === true || item === false }}">{{ item ? '是' : '否' }}</view>
+                            <view class="cu-tag round bg-olive light" wx:else>{{ resMap[key].valMap[item] || item }}</view>
+                        </view>
+                    </view>
+                </block>
+            </block>
+        </view>
+    </view>
+    <view class="button-container">
+        <qnupload wx:if="{{hasAddFile}}"
+                  qnConf="{{qnConf}}" upConf="{{upConf}}"
+                  file="{{files[0]}}" files="{{files}}"
+                  bindevent="qnevent" class="qnupload">
+            <button type="primary">{{uploadText}}</button>
+        </qnupload>
+    </view>
+</iai>

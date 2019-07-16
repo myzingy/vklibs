@@ -42,7 +42,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -68,6 +68,13 @@
 					"id": -1,
 					"name": "pages/qncloud/upload",
 					"pathName": "pages/qncloud/upload",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/iai/face-detect",
+					"pathName": "pages/iai/face-detect",
 					"scene": null
 				}
 			]

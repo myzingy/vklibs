@@ -15,6 +15,13 @@
         </view>
     </view>
 </formids>
+<formids url="../qncloud/index">
+    <view class="margin-xs margin-top-lg padding-xs bg-gradual-green radius shadow shadow-lg">
+        <view class="flex justify-center text-xxl">
+            云开发AI扩展方案体验官①群
+        </view>
+    </view>
+</formids>
 <view class="text-center margin-top" bindtap="copy">
   <text class="text-grey">https://github.com/myzingy/vklibs</text>
 </view>
