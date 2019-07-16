@@ -86,9 +86,15 @@ Component({
         }
         else {
           wx.showToast({
-            title: '识别失败',
+            title: '识别出错：'+result.message,
             icon: 'none',
           })
+          if(result.code==10005){
+            setTimeout(()=>{
+              this.callFunction(f)
+            },1000)
+          }
+
         }
       }
       catch (e) {
