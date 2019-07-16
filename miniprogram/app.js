@@ -10,6 +10,11 @@ App({
     userInfo: null
   },
   onLaunch: function() {
+    const updateManager = wx.getUpdateManager()
+    updateManager.onUpdateReady(function () {
+      // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+      updateManager.applyUpdate()
+    })
     wx.cloud.init()
     this.config({
       request:{
@@ -29,7 +34,6 @@ App({
         this.globalData.CustomBar = custom.bottom + custom.top - e.statusBarHeight;
         this.globalData.width=e.windowWidth;
         this.globalData.height=e.windowHeight;
-
       }
     })
   },
