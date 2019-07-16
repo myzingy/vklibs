@@ -73,7 +73,7 @@ Component({
       console.log('callFunction(f)',f);
       try {
         let result = await app.detectFace({
-          Url:f.remote.url+'.lim.jpg'
+          Url:f.remote.url+'.lim.jpg?imageView2/3/w/980'
         })
         wx.hideLoading();
 
