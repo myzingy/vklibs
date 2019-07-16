@@ -18,7 +18,7 @@
 <formids url="../iai/face-detect">
     <view class="margin-xs margin-top-lg padding-xs bg-gradual-green radius shadow shadow-lg">
         <view class="flex justify-center text-xxl">
-            云开发AI扩展方案体验
+            七牛直传/云开发AI扩展方案
         </view>
     </view>
 </formids>
