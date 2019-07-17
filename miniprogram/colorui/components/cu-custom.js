@@ -34,7 +34,27 @@ Component({
   data: {
     StatusBar: app.globalData.StatusBar,
     CustomBar: app.globalData.CustomBar,
-    Custom: app.globalData.Custom
+    Custom: app.globalData.Custom,
+    disBack:false,
+    disHome:false,
+  },
+  attached(){
+    let pages=getCurrentPages();
+    let disBack = false,disHome = false;
+    if(pages.length==1){
+      disBack = false;
+      if('/pages/index/index'.indexOf(pages[pages.length-1].route)>-1){
+        disHome = false;
+      }else{
+        disHome = true;
+      }
+    }else{
+      disBack = true;
+    }
+    this.setData({
+      disBack:disBack,
+      disHome:disHome,
+    })
   },
   /**
    * 组件的方法列表
