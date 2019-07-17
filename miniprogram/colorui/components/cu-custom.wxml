@@ -6,7 +6,7 @@
       <slot name="backText"></slot>
     </view>
     -->
-    <view class="action border-custom" style="width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)" wx:if="{{disBack || disHome}}">
+    <view class="action border-custom" style="min-width:{{Custom.height}}px;max-width:{{Custom.width}}px;height:{{Custom.height}}px;margin-left:calc(750rpx - {{Custom.right}}px)" wx:if="{{disBack || disHome}}">
       <text class="cuIcon-back" bindtap="BackPage" wx:if="{{disBack}}"></text>
       <text class="cuIcon-homefill" bindtap="toHome" wx:if="{{disHome}}"></text>
     </view>
