@@ -21,6 +21,8 @@ Page({
       count:9,//文件数量
       loading:'leaf',// none|leaf|circle|ring, def leaf 上传的loading效果，none为无，可自行在page wxml中添加
       group:'def', //一个页面上多个组件的区分标识
+      sizeType:['original'],  //['original', 'compressed'] 所选的图片的尺寸,超大图片 compressed 会引起开卡顿
+      sourceType:['album'], //['album', 'camera'] 选择图片的来源
 
     },
     files:[], //组件数据放入这里展示到页面上
@@ -31,6 +33,8 @@ Page({
       count:4,//文件数量
       loading:'ring',// none|leaf|circle|ring, def leaf 上传的loading效果，none为无，可自行在page wxml中添加
       group:'def', //一个页面上多个组件的区分标识
+      sizeType:['original'],  //['original', 'compressed'] 所选的图片的尺寸,超大图片 compressed 会引起开卡顿
+      sourceType:['album'], //['album', 'camera'] 选择图片的来源
 
     },
     files2:[], //组件数据放入这里展示到页面上
