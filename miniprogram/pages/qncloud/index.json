@@ -1,7 +1,6 @@
 {
   "usingComponents": {
     "formids": "/miniprogram_npm/vktool/formids",
-    "previewImage":"plugin://vktool/previewImage",
-    "brickLayout": "plugin://brickLayout/brickLayout"
+    "previewImage":"plugin://vktool/previewImage"
   }
 }
