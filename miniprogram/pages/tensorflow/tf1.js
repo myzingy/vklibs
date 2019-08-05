@@ -34,7 +34,8 @@ Page({
       architecture: 'MobileNetV1',
       outputStride: 16,
       inputResolution: 193,
-      multiplier: 0.5
+      multiplier: 0.5,
+      modelUrl:'https://qn001.pfotoo.com/tfjs-models/savedmodel/posenet/mobilenet/float/050/model-stride16.json',
     })
     console.log(this.net)
   },

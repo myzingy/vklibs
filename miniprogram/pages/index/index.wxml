@@ -23,9 +23,16 @@
     </view>
 </formids>
 <formids url="../tensorflow/tf1">
-    <view class="margin-xs margin-top-lg padding-xs bg-gradual-green radius shadow shadow-lg">
+    <view class="margin-xs margin-top-lg padding-xs bg-gradual-orange radius shadow shadow-lg">
         <view class="flex justify-center text-xxl">
-            tensorflow 姿态捕获
+            tensorflow（PoseNet） 姿态捕获
+        </view>
+    </view>
+</formids>
+<formids url="../tensorflow/tf2">
+    <view class="margin-xs margin-top-lg padding-xs bg-gradual-orange radius shadow shadow-lg">
+        <view class="flex justify-center text-xxl">
+            tensorflow（COCO-SSD） 物体识别
         </view>
     </view>
 </formids>
