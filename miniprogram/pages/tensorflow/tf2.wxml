@@ -1,6 +1,6 @@
 <!--miniprogram/pages/tensorflow/tf1.wxml-->
 <cu-custom bgColor="bg-gradual-blue"  isBack>
-    <view slot="content">七牛直传</view>
+    <view slot="content">tensorflow（COCO-SSD） 物体识别</view>
 </cu-custom>
 <camera
         device-position='back'
