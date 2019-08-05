@@ -25,7 +25,7 @@
 <formids url="../tensorflow/tf1">
     <view class="margin-xs margin-top-lg padding-xs bg-gradual-green radius shadow shadow-lg">
         <view class="flex justify-center text-xxl">
-            tensorflow 姿态
+            tensorflow 姿态捕获
         </view>
     </view>
 </formids>
