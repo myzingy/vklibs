@@ -53,8 +53,8 @@ Page({
   async drawPose(frame) {
     const pose = await this.detectPose(frame, this.net)
     if (pose == null || this.canvas == null) return
-    //console.log('pose.score',pose.score)
     if (pose.score >= 0.3) {
+      console.log('pose.score',pose)
       // Draw circles
       for (let i in pose.keypoints) {
         const point = pose.keypoints[i]
