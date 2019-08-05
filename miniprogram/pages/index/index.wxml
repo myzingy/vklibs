@@ -22,6 +22,13 @@
         </view>
     </view>
 </formids>
+<formids url="../tensorflow/tf1">
+    <view class="margin-xs margin-top-lg padding-xs bg-gradual-green radius shadow shadow-lg">
+        <view class="flex justify-center text-xxl">
+            tensorflow 姿态
+        </view>
+    </view>
+</formids>
 <view class="text-center margin-top" bindtap="copy">
   <text class="text-grey">源码 https://github.com/myzingy/vklibs</text>
 </view>

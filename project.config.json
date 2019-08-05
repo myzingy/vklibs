@@ -4,6 +4,7 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -17,12 +18,11 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"enhance": true
+		}
 	},
 	"appid": "wx57e1b2146070ea91",
 	"projectname": "vklibs",
-	"libVersion": "2.7.1",
+	"libVersion": "2.8.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"condition": {
@@ -42,7 +42,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 4,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -75,6 +75,13 @@
 					"id": -1,
 					"name": "pages/iai/face-detect",
 					"pathName": "pages/iai/face-detect",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/tensorflow/tf1",
+					"pathName": "pages/tensorflow/tf1",
 					"scene": null
 				}
 			]

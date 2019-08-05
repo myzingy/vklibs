@@ -1,0 +1,10 @@
+<!--miniprogram/pages/tensorflow/tf1.wxml-->
+<camera
+        device-position='back'
+        flash='off'
+        binderror='error'
+        style='width: 100%; height: 100%;'
+>
+    <canvas canvas-id='pose' style='width: 100%; height: 100%;z-index: 9999;'>
+    </canvas>
+</camera>

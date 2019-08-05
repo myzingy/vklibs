@@ -4,7 +4,8 @@
     "pages/index/heatmap",
     "pages/qncloud/index",
     "pages/qncloud/upload",
-    "pages/iai/face-detect"
+    "pages/iai/face-detect",
+    "pages/tensorflow/tf1"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,9 +22,9 @@
       "version": "2.1.1",
       "provider": "wxd3dc4206c76f14fc"
     },
-    "brickLayout": {
-      "version": "0.2.0",
-      "provider": "wx3c042630f3cdc175"
+    "tfjsPlugin": {
+      "version": "0.0.5",
+      "provider": "wx6afed118d9e81df9"
     }
   },
   "sitemapLocation": "sitemap.json"
