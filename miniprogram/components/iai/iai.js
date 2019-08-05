@@ -45,7 +45,9 @@ Component({
     files:[], //组件数据放入这里展示到页面上
     hasAddFile:true,//出现上传加号
   },
-
+  attached(){
+    this.errCount=0;
+  },
   methods: {
     async qnevent(e){
       console.log('qnevent',e);
@@ -90,9 +92,15 @@ Component({
             icon: 'none',
           })
           if(result.code==10005){
-            setTimeout(()=>{
-              this.callFunction(f)
-            },1000)
+            if(this.errCount<1){
+              setTimeout(()=>{
+                this.errCount++
+                this.callFunction(f)
+              },1000)
+            }else{
+              this.errCount=0;
+            }
+
           }
 
         }
