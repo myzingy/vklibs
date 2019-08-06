@@ -11,3 +11,4 @@
     <canvas canvas-id='pose' style='width: {{width}}px; height: {{height}}px;' class="canvas">
     </canvas>
 </camera>
+<view class="text-center margin-top-xl">如不能识别，请退出后重新进入</view>
