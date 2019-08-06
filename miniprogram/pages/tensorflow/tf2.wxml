@@ -6,9 +6,9 @@
         device-position='back'
         flash='off'
         binderror='error'
-        style='width: {{width}}rpx; height: {{height}}rpx;'
+        style='width: {{width}}px; height: {{height}}px;'
 >
-    <canvas canvas-id='pose' style='width: {{width}}rpx; height: {{height}}rpx;' class="canvas">
+    <canvas canvas-id='pose' style='width: {{width}}px; height: {{height}}px;' class="canvas">
     </canvas>
 </camera>
 

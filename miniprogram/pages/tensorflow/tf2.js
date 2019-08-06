@@ -11,10 +11,15 @@ plugin.configPlugin({
   // provide webgl canvas
   canvas: wx.createOffscreenCanvas()
 });
+const BLC=0.95//0.72
 Page({
   data:{
-    width:0,
-    height:0,
+    width:10,
+    height:10,
+  },
+  blc:{
+    w:0.5,
+    h:0.5,
   },
   async onReady() {
     const camera = wx.createCameraContext(this)
@@ -22,14 +27,14 @@ Page({
     this.loadPosenet()
     let count = 0
     this.listener = camera.onCameraFrame((frame) => {
-      if(this.data.width<1){
-        this.setData({
-          width:frame.width,
-          height:frame.height,
-        })
+      if(this.blc.w==0.5 && this.data.width!=10){
+        this.blc={
+          w:(this.data.width)/frame.width ,
+          h:(this.data.height)/frame.height,
+        }
       }
       count++
-      if (count === 3) {
+      if (count === 2) {
         if (this.net) {
           this.drawPose(frame)
         }
@@ -37,6 +42,17 @@ Page({
       }
     })
     this.listener.start()
+  },
+  onShow(){
+    wx.getSystemInfo({
+      success:res=>{
+        //console.log(res)
+        this.setData({
+          width:res.windowWidth*0.7,
+          height:res.windowHeight*0.7,
+        })
+      },
+    })
   },
   async loadPosenet() {
     this.drawBox(this.canvas,[100,300,120,30],'loading')
@@ -55,33 +71,41 @@ Page({
     // })
     //console.log('imgSlice',imgSlice)
     const poses = await net.detect(imgData)
-    console.log('poses',poses)
+    //console.log('poses',poses)
     //imgSlice.dispose()//tf丈量销毁
     return poses
   },
   async drawPose(frame) {
     const poses = await this.detectPose(frame, this.net)
     if (this.canvas == null) return
+    let hasDraw=false;
     poses.forEach(pose=>{
       if (pose == null || this.canvas == null) return
       if (pose.score >= 0.5) {
-        console.log('pose.score',pose)
+        //console.log('pose.score',pose)
+        hasDraw=true
         this.drawBox(this.canvas, pose.bbox,pose.class)
       }
     })
-    this.canvas.draw()
+    if(hasDraw) this.canvas.draw()
   },
   drawBox(canvas, box,txt) {
     let bbox=[];
-    box.forEach((v)=>{
-      bbox.push(v/2)
+    box.forEach((v,i)=>{
+      if(i==0 || i==2){
+        bbox.push(parseInt(v*this.blc.w))
+      }else{
+        bbox.push(parseInt(v*this.blc.h))
+      }
+
     })
+    console.log(txt,bbox,this.blc)
     let c=this.getColor(txt)
     canvas.setStrokeStyle(c)
     canvas.setFillStyle(c)
-    canvas.strokeRect(bbox[0], bbox[1],bbox[2],bbox[3])
+    canvas.strokeRect(bbox[0]*BLC, bbox[1]*BLC,bbox[2]*BLC,bbox[3]*BLC)
     canvas.setFontSize(14)
-    canvas.fillText(txt, bbox[0]+5, bbox[1]+12)
+    canvas.fillText(txt, (bbox[0]+5)*BLC, (bbox[1]+12)*BLC)
   },
   color:{},
   getColor(txt){
