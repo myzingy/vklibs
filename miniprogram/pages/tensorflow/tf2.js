@@ -12,12 +12,22 @@ plugin.configPlugin({
   canvas: wx.createOffscreenCanvas()
 });
 Page({
+  data:{
+    width:0,
+    height:0,
+  },
   async onReady() {
     const camera = wx.createCameraContext(this)
     this.canvas = wx.createCanvasContext('pose', this)
     this.loadPosenet()
     let count = 0
-    const listener = camera.onCameraFrame((frame) => {
+    this.listener = camera.onCameraFrame((frame) => {
+      if(this.data.width<1){
+        this.setData({
+          width:frame.width,
+          height:frame.height,
+        })
+      }
       count++
       if (count === 3) {
         if (this.net) {
@@ -26,7 +36,7 @@ Page({
         count = 0
       }
     })
-    listener.start()
+    this.listener.start()
   },
   async loadPosenet() {
     this.drawBox(this.canvas,[100,300,120,30],'loading')
@@ -61,13 +71,17 @@ Page({
     })
     this.canvas.draw()
   },
-  drawBox(canvas, bbox,txt) {
+  drawBox(canvas, box,txt) {
+    let bbox=[];
+    box.forEach((v)=>{
+      bbox.push(v/2)
+    })
     let c=this.getColor(txt)
     canvas.setStrokeStyle(c)
     canvas.setFillStyle(c)
     canvas.strokeRect(bbox[0], bbox[1],bbox[2],bbox[3])
-    canvas.setFontSize(20)
-    canvas.fillText(txt, bbox[0]+20, bbox[1]+20)
+    canvas.setFontSize(14)
+    canvas.fillText(txt, bbox[0]+5, bbox[1]+12)
   },
   color:{},
   getColor(txt){
@@ -81,5 +95,8 @@ Page({
     }
     this.color[txt]='rgb('+r+','+g+','+b+')'
     return this.color[txt]
+  },
+  onUnload(){
+    if(this.listener) this.listener.stop()
   },
 })

@@ -11,14 +11,24 @@ plugin.configPlugin({
   // provide webgl canvas
   canvas: wx.createOffscreenCanvas()
 });
+const BLC=0.85//0.72
 Page({
-
+  data:{
+    width:0,
+    height:0,
+  },
   async onReady() {
     const camera = wx.createCameraContext(this)
     this.canvas = wx.createCanvasContext('pose', this)
     this.loadPosenet()
     let count = 0
-    const listener = camera.onCameraFrame((frame) => {
+    this.listener = camera.onCameraFrame((frame) => {
+      if(this.data.width<1){
+        this.setData({
+          width:frame.width,
+          height:frame.height,
+        })
+      }
       count++
       if (count === 3) {
         if (this.net) {
@@ -27,7 +37,7 @@ Page({
         count = 0
       }
     })
-    listener.start()
+    this.listener.start()
   },
   async loadPosenet() {
     this.net = await posenet.load({
@@ -76,16 +86,19 @@ Page({
   },
   drawCircle(canvas, x, y) {
     canvas.beginPath()
-    canvas.arc(x * 0.72, y * 0.72, 3, 0, 2 * Math.PI)
+    canvas.arc(x/2 * BLC, y/2 * BLC, 3, 0, 2 * Math.PI)
     canvas.fillStyle = 'aqua'
     canvas.fill()
   },
   drawLine(canvas, pos0, pos1) {
     canvas.beginPath()
-    canvas.moveTo(pos0.x * 0.72, pos0.y * 0.72)
-    canvas.lineTo(pos1.x * 0.72, pos1.y * 0.72)
+    canvas.moveTo(pos0.x/2 * BLC, pos0.y/2 * BLC)
+    canvas.lineTo(pos1.x/2 * BLC, pos1.y/2 * BLC)
     canvas.lineWidth = 2
     canvas.strokeStyle = `aqua`
     canvas.stroke()
-  }
+  },
+  onUnload(){
+    if(this.listener) this.listener.stop()
+  },
 })
