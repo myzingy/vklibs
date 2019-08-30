@@ -84,5 +84,18 @@ Page({
     setTimeout(()=>{
       this.play()
     },300)
-  }
+  },
+  startx(){
+    let x=0;
+    let startxsetInterval=setInterval(()=>{
+      if(x>=10){
+        clearInterval(startxsetInterval)
+      }else{
+        if(!this.data.hasRunning){
+          x++
+          this.start()
+        }
+      }
+    },100)
+  },
 })

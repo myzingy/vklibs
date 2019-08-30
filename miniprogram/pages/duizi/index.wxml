@@ -41,3 +41,8 @@
         <view wx:else="">{{history.length>0?'Palying':'Paly'}}</view>
     </view>
 </view>
+<view class="margin-xs margin-top-lg padding-sm bg-gradual-green radius shadow shadow-lg" wx:if="{{!hasRunning}}" bindtap="startx">
+    <view class="flex justify-center text-xxl">
+        跑10轮
+    </view>
+</view>
