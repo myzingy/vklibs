@@ -1,0 +1,6 @@
+/* miniprogram/pages/duizi/index.wxss */
+.cu-tag.badge {
+    font-size: 36rpx;
+    height: 48rpx;
+    line-height: 48rpx;
+}
