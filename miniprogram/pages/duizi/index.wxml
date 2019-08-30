@@ -3,25 +3,37 @@
     <view slot="content">对子(概率、策略)</view>
 </cu-custom>
 <view class="bg-white">
-    <view class="flex solid-bottom padding justify-center">
-        <view class="cu-avatar xl round bg-green">
-            <view class="cu-tag badge bg-red">{{history[0].p0.pi[0].id}} {{history[0].p0.pi[1].id}}</view>
-            <view >{{history[0].p0.money}}</view>
+    <view class="flex padding justify-center">
+        <view class="justify-center">
+            <view class="cu-avatar xl round bg-green">
+                <view class="cu-tag badge bg-red">{{history[0].p0.pi[0].id}} {{history[0].p0.pi[1].id}}</view>
+                <view >{{history[0].p0.money}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="flex solid-bottom justify-center margin-bottom">
+        <view class="flex justify-center">
+            <view class="tip record">{{record.p0.money}}</view>
+            <view class="tip moneyPow">{{history[0].p0.moneyPow}}</view>
+            <view class="tip moneyMax">{{history[0].p0.moneyMax}}</view>
         </view>
     </view>
     <view class="flex solid-bottom padding justify-around">
         <block wx:for="{{history[0]}}" wx:key="history[0].key">
-            <view class="cu-avatar xl round  bg-gray" wx:if="{{!item.pk}}">
-                <view class="cu-tag badge bg-red">
-                    {{item.pi[0].id}} {{item.pi[1].id}}
-                    <view class="cu-tag badge bg-blue cuIcon-male" wx:if="{{item.order==0}}"></view>
+            <view wx:if="{{!item.pk}}">
+                <view class="cu-avatar xl round  bg-gray" >
+                    <view class="cu-tag badge bg-red">
+                        {{item.pi[0].id}} {{item.pi[1].id}}
+                        <view class="cu-tag badge bg-blue" wx:if="{{item.order==0}}"></view>
+                    </view>
+                    <view >{{item.money}}</view>
                 </view>
-                <view >{{item.money}}</view>
+                <view class="record">{{record[item.id].money}}</view>
             </view>
         </block>
     </view>
 </view>
-<view class="margin-xs margin-top-lg padding-xs bg-gradual-blue radius shadow shadow-lg" bindtap="play">
+<view class="margin-xs margin-top-lg padding-xs bg-gradual-blue radius shadow shadow-lg" bindtap="start">
     <view class="flex justify-center text-xxl">
         Paly
     </view>

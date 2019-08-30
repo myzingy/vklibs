@@ -4,3 +4,15 @@
     height: 48rpx;
     line-height: 48rpx;
 }
+.record:before{
+    content: '总分:';
+}
+.moneyPow:before{
+    content: '锅:';
+}
+.moneyMax:before{
+    content: '靠岸:';
+}
+.tip{
+    margin-right: 20rpx;
+}

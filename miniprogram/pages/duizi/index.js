@@ -13,10 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    dz.selPeopleNum(5);
-    this.setData({
-      history:[dz.people]
-    })
+
   },
 
   /**
@@ -67,12 +64,22 @@ Page({
   onShareAppMessage: function () {
 
   },
+  start(){
+    dz.selPeopleNum(5);
+    this.play()
+  },
   play(){
+    if(dz.people['p0'].hasPochan || dz.people['p0'].hasKaoan) {
+      return this.setData({
+        record:dz.record()
+      })
+    }
     dz.play();
-    let history=this.data.history
-    history.unshift(dz.people)
     this.setData({
-      history:history
+      history:dz.history
     })
+    setTimeout(()=>{
+      this.play()
+    },300)
   }
 })

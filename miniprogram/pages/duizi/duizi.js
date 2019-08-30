@@ -39,6 +39,7 @@ class puke {
   }
 }
 class duizi{
+  history=[]
   selPeopleNum(num){
     let people={}
     for(let i=0;i<num;i++){
@@ -47,9 +48,11 @@ class duizi{
         id:id,
         pk:i==0,
         money:i==0?100:0,//奖金、奖池
-        stake:20,//押注
+        stake:10,//押注
         resFlag:'',//单次pk标识
         resMoney:0,//单次结算
+        moneyPow:100,//锅
+        moneyMax:1000//靠岸
       }
     }
     this.peopleNum=num
@@ -109,7 +112,7 @@ class duizi{
       this.people[zhuang].money+=this.people[xian].stake
 
       this.people[xian].money-=this.people[xian].stake
-      console.log(zhuang+' vs '+xian,zhuang+'胜',this.people[xian].stake)
+      //console.log(zhuang+' vs '+xian,zhuang+'胜',this.people[xian].stake)
     }else{
       let money=this.people[xian].stake*vb
       money=money<=this.people[zhuang].money?money:this.people[zhuang].money;
@@ -117,7 +120,7 @@ class duizi{
       this.people[xian].money+=money
 
       this.people[zhuang].money-=money
-      console.log(zhuang+' vs '+xian,xian+'胜',money)
+      //console.log(zhuang+' vs '+xian,xian+'胜',money)
     }
     if(this.people[zhuang].money<=0){
       this.people[zhuang].hasPochan=true
@@ -152,9 +155,40 @@ class duizi{
       this._pk('p0',p.id)
     })
   }
+  yazhu(){
+    this.people['p1'].stake=parseInt(this.people['p0'].money/2)
+    this.people['p2'].stake=this.people['p0'].money
+  }
+  kaoan(){
+    if(this.people['p0'].money>this.people['p0'].moneyMax){
+      this.people['p0'].hasKaoan=true
+    }
+  }
+  record(){
+    let ps={}
+    this.history.forEach((row,index)=>{
+      if(row.p0.hasPochan || row.p0.hasKaoan){
+        Object.keys(row).forEach((pid)=>{
+          let p=row[pid];
+          if(index==0){
+            ps[pid]={
+              money:(pid=='p0')?p.money-p.moneyPow:p.money
+            }
+          }else{
+            ps[pid].money+=((pid=='p0')?p.money-p.moneyPow:p.money)
+          }
+        })
+      }
+    })
+    console.log(JSON.stringify(ps))
+    return ps;
+  }
   play(){
     this.fapai();
+    this.yazhu();
     this.pk();
+    this.kaoan();
+    this.history.unshift(JSON.parse(JSON.stringify(this.people)))
   }
 }
 export default new duizi()
