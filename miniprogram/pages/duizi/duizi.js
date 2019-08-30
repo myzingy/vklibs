@@ -156,8 +156,33 @@ class duizi{
     })
   }
   yazhu(){
+    this.people['p1'].stakeInfo='杀一半'
     this.people['p1'].stake=parseInt(this.people['p0'].money/2)
+
+    this.people['p2'].stakeInfo='全杀'
     this.people['p2'].stake=this.people['p0'].money
+
+    this.people['p3'].stakeInfo='压10输2轮杀一半'
+    this.people['p3'].stake=this.getPeopleStake3()
+
+    this.people['p4'].stakeInfo='压20输3轮杀3/4'
+    this.people['p4'].stake=this.getPeopleStake4()
+  }
+  getPeopleStake3(){
+    if(this.history.length<2) return 10
+    if(!this.history[0].p3.resFlag && !this.history[1].p3.resFlag){
+      return parseInt(this.people['p0'].money/2)
+    }
+    return 10;
+  }
+  getPeopleStake4(){
+    if(this.history.length<3) return 20
+    if(!this.history[0].p3.resFlag
+      && !this.history[1].p3.resFlag
+      && !this.history[2].p3.resFlag){
+      return parseInt(this.people['p0'].money*(3/4))
+    }
+    return 20;
   }
   kaoan(){
     if(this.people['p0'].money>this.people['p0'].moneyMax){

@@ -20,7 +20,7 @@
     </view>
     <view class="flex solid-bottom padding justify-around">
         <block wx:for="{{history[0]}}" wx:key="history[0].key">
-            <view wx:if="{{!item.pk}}">
+            <view wx:if="{{!item.pk}}" style="min-width: 25%">
                 <view class="cu-avatar xl round  bg-gray" >
                     <view class="cu-tag badge bg-red">
                         {{item.pi[0].id}} {{item.pi[1].id}}
@@ -29,12 +29,15 @@
                     <view >{{item.money}}</view>
                 </view>
                 <view class="record">{{record[item.id].money}}</view>
+                <view class="stakeInfo">{{item.stakeInfo}}</view>
             </view>
         </block>
     </view>
 </view>
-<view class="margin-xs margin-top-lg padding-xs bg-gradual-blue radius shadow shadow-lg" bindtap="start">
+<view class="margin-xs margin-top-lg padding-xl {{hasRunning?'bg-brown':'bg-gradual-blue'}} radius shadow shadow-lg" bindtap="{{hasRunning?'':'start'}}">
     <view class="flex justify-center text-xxl">
-        Paly
+        <view wx:if="{{history[0].p0.hasPochan}}">庄家锅烂了</view>
+        <view wx:elif="{{history[0].p0.hasKaoan}}">庄家（{{history[0].p0.money}}）靠岸</view>
+        <view wx:else="">{{history.length>0?'Palying':'Paly'}}</view>
     </view>
 </view>

@@ -7,6 +7,7 @@ Page({
    */
   data: {
     history:[],
+    hasRunning:false,
   },
 
   /**
@@ -71,12 +72,14 @@ Page({
   play(){
     if(dz.people['p0'].hasPochan || dz.people['p0'].hasKaoan) {
       return this.setData({
-        record:dz.record()
+        record:dz.record(),
+        hasRunning:false
       })
     }
     dz.play();
     this.setData({
-      history:dz.history
+      history:dz.history,
+      hasRunning:true
     })
     setTimeout(()=>{
       this.play()

@@ -16,3 +16,6 @@
 .tip{
     margin-right: 20rpx;
 }
+.stakeInfo:before{
+    content: '策略:';
+}
