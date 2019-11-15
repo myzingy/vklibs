@@ -55,12 +55,14 @@ Page({
     })
   },
   async loadPosenet() {
+    const POSENET_URL =
+      'https://www.gstaticcnapps.cn/tfjs-models/savedmodel/posenet/mobilenet/float/050/model-stride16.json';
     this.net = await posenet.load({
       architecture: 'MobileNetV1',
       outputStride: 16,
       inputResolution: 193,
       multiplier: 0.5,
-      modelUrl:'https://qn001.pfotoo.com/tfjs-models/savedmodel/posenet/mobilenet/float/050/model-stride16.json',
+      modelUrl:POSENET_URL,
     })
     console.log(this.net)
   },

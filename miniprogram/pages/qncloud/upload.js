@@ -9,12 +9,12 @@ Page({
    */
   data: {
     qnConf:{
-      accessKey:'p7WjLuVs1GTpFRH_7mnZ0KidZfWXNh5_nW_2X_eJ',
-      secretKey:'mWb6EV70xL2opJU1uwWk9Z7MyAUjPF8cLVwvd9x6',
-      bucket:'fotoo',
+      accessKey:'ZUHvYeKtuiwWK7sLy2ABvrRWnYXjNLcdxoqvOihe',
+      secretKey:'xsw0f3qRAEQluUhvJW4QN5nwHCYjjLKi1A9iSoyO',
+      bucket:'linligo',
       fileType:'image',
       region:'华东',
-      domain:'http://qn001.pfotoo.com'
+      domain:'http://009-img.vking.wang'
     },
     upConf:{
       prefixPath:'oxcc',//上传到七牛后有一个路径前缀，可为空；

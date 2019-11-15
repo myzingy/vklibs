@@ -57,9 +57,11 @@ Page({
   async loadPosenet() {
     this.drawBox(this.canvas,[100,300,120,30],'loading')
     this.canvas.draw()
+    const POSENET_URL =
+      'https://www.gstaticcnapps.cn/tfjs-models/savedmodel/ssdlite_mobilenet_v2/model.json';
     this.net = await cocoSsd.load({
       base: 'lite_mobilenet_v2',
-      modelUrl: 'https://qn001.pfotoo.com/tfjs-models/savedmodel/ssdlite_mobilenet_v2/model.json',
+      modelUrl: POSENET_URL,
     })
     console.log(this.net)
   },
