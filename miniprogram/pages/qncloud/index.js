@@ -15,8 +15,8 @@ Page({
       columns: 2,
       imageFillMode: 'widthFix',
       icon:{
-        fill:'http://qn001.pfotoo.com/images/see-ffff.svg',
-        default:'http://qn001.pfotoo.com/images/see-ffff.svg'
+        fill:'http://009-img.vking.wang/images/see-ffff.svg',
+        default:'http://009-img.vking.wang/images/see-ffff.svg'
       },
       fontColor:'#fefefe'
     },
