@@ -10,6 +10,7 @@
     git submodule add https://github.com/Kujiale-Mobile/PainterCore.git miniprogram/components/painter
     
     从新下载painter
+    
     cd miniprogram\components\painter>git submodule update --init ./
 
 * ColorUI UI库  
